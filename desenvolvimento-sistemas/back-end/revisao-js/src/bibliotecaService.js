@@ -29,12 +29,6 @@ export async function cadastrar(titulo, categoria, valor_unitario, estoque_minim
 }
 
 
-// INSERT INTO livros (
-// 	titulo, 
-// 	categoria, 
-// 	valor_unitario, 
-// 	estoque_minimo, 
-// 	estoque_maximo
-// ) 
-// VALUES
-// 	('Dom Casmurro', 'Romance', 45.00, 2, 20),
+export async function livrosMaiorSaida() {
+    
+}
