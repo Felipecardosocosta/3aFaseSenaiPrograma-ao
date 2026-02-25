@@ -1,0 +1,12 @@
+.footer {
+    background: #0b325a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+
+
+    .autor {
+         font-size: 13px;
+        color: #fff;
+    }
+}
