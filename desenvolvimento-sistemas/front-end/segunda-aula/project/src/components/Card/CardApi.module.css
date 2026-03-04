@@ -1,0 +1,21 @@
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 200px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    min-height: 180px;
+
+    h3{
+        justify-self: center;
+        margin-bottom: 20px;
+    }
+}
+
+.contCard {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
