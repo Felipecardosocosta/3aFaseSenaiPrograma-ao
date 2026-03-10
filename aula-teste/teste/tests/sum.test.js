@@ -1,6 +1,7 @@
 import { createUser } from "../src/userService"
 
 const user= {
+
      age: 18,
      isActive: true,
 
@@ -9,7 +10,7 @@ const user= {
 
 test('test CreateUser', () => {
 
-    expect(()=> createUser(user)).toThrow()
+    expect(()=> createUser(user)).toThrow('O nome do usuário é obrigatório.')
     expect(()=> createUser(user)).toThrow(Error)
 
   })
