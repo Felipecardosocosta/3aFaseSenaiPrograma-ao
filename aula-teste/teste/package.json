@@ -1,11 +1,11 @@
 {
-  "name": "primeiro_projeto",
+  "name": "teste",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "start": "node --watch src/server.js"
+    "start": "node src/server.js --watch"
   },
   "keywords": [],
   "author": "",
