@@ -50,6 +50,7 @@ export const CardApi = () => {
     return (
         <>
             <input
+            className={style.input}
                 type="text"
                 placeholder='Buscar por nome ...'
                 value={filtro}
