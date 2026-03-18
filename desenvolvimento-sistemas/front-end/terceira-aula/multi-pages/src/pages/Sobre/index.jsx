@@ -1,12 +1,15 @@
 import React from 'react'
 import Header from '../../layouts/Header'
 import Footer from '../../layouts/Footer'
+import { useAuth } from '../../context/AuthContext'
 
 const Sobre = () => {
+  const { user } = useAuth()
   return (
     <>
     <div >
-        <h2>Sobre</h2>
+        <h2>Ola {user?.email}</h2>
+
     </div>
     
     </>
