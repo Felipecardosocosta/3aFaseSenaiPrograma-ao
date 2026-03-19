@@ -259,7 +259,7 @@ app.delete('/exames/:id', async (req, res) => {
       }
     })
 
-    console.log(exame);
+   
     
     return res.status(200).json({
       message: "Exame deletado",
