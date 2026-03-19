@@ -1,6 +1,6 @@
 import express from 'express';
 import { prisma } from './prisma/prisma';
-import type { Usuario,Exame } from './prisma/generated/prisma/client';
+import type { Usuario, Exame } from './prisma/generated/prisma/client';
 
 const app = express();
 app.use(express.json())
@@ -12,9 +12,32 @@ app.get('/', (req, res) => {
 })
 
 // Endpoints usuario
-app.get('/usuarios', async (req, res) => {
+app.get('/usuarios', async (_, res) => {
   const usuarios = await prisma.usuario.findMany();
-  res.json(usuarios);
+
+
+  res.json({
+    message: "Todos usuarios encontrado",
+    data: usuarios
+  });
+})
+
+
+app.get('/usuarios/:id', async (req, res) => {
+
+  const idUsuario = Number(req.params.id)
+
+  const usuario = await prisma.usuario.findUnique({
+    where: {
+      id: idUsuario
+    }
+  })
+
+  return res.status(200).json({
+    message: "Usuario encontrado",
+    data: usuario
+  })
+
 })
 
 app.post("/usuarios", async (req, res) => {
@@ -26,26 +49,139 @@ app.post("/usuarios", async (req, res) => {
       nome: dadosUsuario.nome || null
     }
   })
-  return res.status(201).json(usuarioCriado)
+  return res.status(201).json({
+    message: "Usuario criado",
+    data: usuarioCriado
+  })
 })
 
-app.get('/exames',async (req,res)=>{
-  const exames = await prisma.exame.findMany()
+app.put("/usuarios/:id", async (req, res) => {
+  const idUsuario = Number(req.params.id)
+  const dadosUsuario = req.body as Omit<Usuario, "id">
+  const usuarioModificado = await prisma.usuario.update({
+    data: {
+      ...dadosUsuario
 
+    },
+    where: {
+      id: idUsuario
+    }
+  })
+
+
+
+  return res.status(201).json({
+    message: "Usuario modificado",
+    data: usuarioModificado
+  })
+})
+
+
+app.delete("/usuarios/:id", async (req, res) => {
+  const idUsuario = Number(req.params.id)
+
+  const usuarioDeletado = await prisma.usuario.delete({
+    where: {
+      id: idUsuario
+    }
+  })
+
+
+
+  return res.status(200).json({
+    message: "Usuario deletado",
+    data: usuarioDeletado
+  })
+})
+
+
+
+
+
+
+
+//  -- Exames --
+
+app.get('/exames', async (req, res) => {
+  
   try {
-     if (exames.length > 0) {
+    const exames = await prisma.exame.findMany()
 
-    res.status(200).json(exames)
+    if (exames.length !== 0) {
+
+      return res.status(200).json({
+        message: "Todos os exames encontrados",
+        data: exames
+      })
+
+    }
+
     
-  }else res.status(204)
+      return res.status(200).json({
+        message: "Nem um exame marcado",
+        data: exames
+  
+      })
+      
+      
+    
+
+    
+
+
   } catch (error) {
     console.error(error)
+    return res.status(400).json({
+      message: "Erro",
+      error: error
+    })
   }
 
- 
+
 })
 
-app.post("/exame", async (req, res) => {
+app.get('/exames/:id', async (req, res) => {
+  const idExames = Number(req.params.id)
+
+
+
+  try {
+    const exame = await prisma.exame.findUnique({
+      where: {
+        id: idExames
+      }
+    })
+
+
+    if (exame === null) {
+
+      return res.status(200).json({
+        message: "Exame não existe",
+        data: exame
+      })
+
+
+
+    }
+    return res.status(200).json({
+      message: "Exame encontrado",
+      data: exame
+    })
+
+
+
+  } catch (error) {
+    console.error(error)
+    return res.status(400).json({
+      message: "Erro",
+      error: error
+    })
+  }
+
+
+})
+
+app.post("/exames", async (req, res) => {
   console.log(req.body)
   const dadosExame = req.body as Exame
 
@@ -53,20 +189,96 @@ app.post("/exame", async (req, res) => {
     const exameCriado = await prisma.exame.create({
       data: {
         data_exame: new Date(dadosExame.data_exame),
-        tipo_exame:dadosExame.tipo_exame,
-        descricao:dadosExame.descricao,
-        resultado:dadosExame.resultado,
-        valor:dadosExame.valor
-        
+        tipo_exame: dadosExame.tipo_exame,
+        descricao: dadosExame.descricao,
+        resultado: dadosExame.resultado,
+        valor: dadosExame.valor
+
       }
     })
-    return res.status(201).json(exameCriado)
-    
+    return res.status(201).json({
+      message: "Exame criado",
+      data: exameCriado
+    })
+
   } catch (error) {
     console.error(error)
-    
+
+    return res.status(400).json({
+      message: "Erro",
+      error: error
+    })
+
   }
 })
+
+app.put("/exames/:id", async (req, res) => {
+  const idExame = Number(req.params.id)
+  const dadosExame = req.body as Omit<Exame, "id">
+
+  try {
+    const exameEditado = await prisma.exame.update({
+      data: {
+        data_exame: new Date(dadosExame.data_exame),
+        tipo_exame: dadosExame.tipo_exame,
+        descricao: dadosExame.descricao,
+        resultado: dadosExame.resultado,
+        valor: dadosExame.valor
+
+      },
+      where: {
+        id: idExame
+      }
+
+    })
+    return res.status(201).json({
+      message: "Exame Editado",
+      data: exameEditado
+    })
+
+  } catch (error) {
+    console.error(error)
+
+    return res.status(400).json({
+      message: "Erro",
+      error: error
+    })
+
+  }
+})
+
+app.delete('/exames/:id', async (req, res) => {
+  const idExames = Number(req.params.id)
+
+
+
+  try {
+    const exame = await prisma.exame.delete({
+      where: {
+        id: idExames
+      }
+    })
+
+    console.log(exame);
+    
+    return res.status(200).json({
+      message: "Exame deletado",
+      data: exame
+    })
+
+
+  } catch (error) {
+    console.error(error)
+    return res.status(400).json({
+      message: "Erro",
+      error: error
+    })
+  }
+
+
+})
+
+
 
 
 
