@@ -256,7 +256,7 @@ export type UsuarioCreateInput = {
   email: string
   nome?: string | null
   senha: string
-  tokens?: Prisma.TokenCreateNestedManyWithoutUsuario_idInput
+  tokens?: Prisma.TokenCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateInput = {
@@ -264,14 +264,14 @@ export type UsuarioUncheckedCreateInput = {
   email: string
   nome?: string | null
   senha: string
-  tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUsuario_idInput
+  tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
-  tokens?: Prisma.TokenUpdateManyWithoutUsuario_idNestedInput
+  tokens?: Prisma.TokenUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateInput = {
@@ -279,7 +279,7 @@ export type UsuarioUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
-  tokens?: Prisma.TokenUncheckedUpdateManyWithoutUsuario_idNestedInput
+  tokens?: Prisma.TokenUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioCreateManyInput = {

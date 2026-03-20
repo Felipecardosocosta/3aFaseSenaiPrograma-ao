@@ -694,7 +694,8 @@ export const TokenScalarFieldEnum = {
   token: 'token',
   type: 'type',
   revoked: 'revoked',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  usuarioId: 'usuarioId'
 } as const
 
 export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof TokenScalarFieldEnum]

@@ -46,7 +46,9 @@ model Token {
   revoked   Boolean  @default(false)
   expiresAt DateTime
 
-  usuario_id Usuario @relation(fields: [id], references: [id])
+  usuarioId Int
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
 
   @@map("token")
 }
