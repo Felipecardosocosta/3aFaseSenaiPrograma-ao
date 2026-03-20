@@ -1,6 +1,11 @@
 import express from 'express';
 import { prisma } from './prisma/prisma';
 import type { Usuario, Exame } from './prisma/generated/prisma/client';
+import bcrypt  from 'bcrypt'
+import 'dotenv/config'
+
+import jwt from 'jsonwebtoken'
+
 
 const app = express();
 app.use(express.json())
@@ -23,6 +28,41 @@ app.get('/usuarios', async (_, res) => {
 })
 
 
+app.post('/usuarios/login/:id', async (req, res) => {
+
+  const idUsuario = Number(req.params.id)
+  const usuarioRecebido = req.body as Usuario
+  const usuario = await prisma.usuario.findUnique({
+    where: {
+      id: idUsuario
+    }
+  })
+
+  const compare = await bcrypt.compare(usuarioRecebido.senha, usuario?.senha|| "")
+
+  if (compare) {
+
+    const senhaToken = process.env.JWTSENHA
+     
+
+    return res.status(200).json({
+      message: "Usuario encontrado",
+      data: usuario
+    })
+    
+  }
+
+
+
+  return res.status(401).json({
+      message: "Usuario ou senha incorreto",
+      data: {}
+    })
+
+
+})
+
+
 app.get('/usuarios/:id', async (req, res) => {
 
   const idUsuario = Number(req.params.id)
@@ -40,13 +80,18 @@ app.get('/usuarios/:id', async (req, res) => {
 
 })
 
+
+
 app.post("/usuarios", async (req, res) => {
   console.log(req.body)
+  
   const dadosUsuario = req.body as Usuario
+  const senhaHash =await bcrypt.hash(dadosUsuario.senha,10)
   const usuarioCriado = await prisma.usuario.create({
     data: {
       email: dadosUsuario.email,
-      nome: dadosUsuario.nome || null
+      nome: dadosUsuario.nome,
+      senha:senhaHash
     }
   })
   return res.status(201).json({
@@ -277,10 +322,6 @@ app.delete('/exames/:id', async (req, res) => {
 
 
 })
-
-
-
-
 
 app.listen(port, () => {
   console.log("Servidor ta de pé :p")
