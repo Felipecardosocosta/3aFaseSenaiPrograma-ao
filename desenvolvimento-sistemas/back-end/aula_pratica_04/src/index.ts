@@ -1,7 +1,7 @@
 import express from 'express';
 import { prisma } from './prisma/prisma';
 import type { Usuario, Exame } from './prisma/generated/prisma/client';
-import bcrypt  from 'bcrypt'
+import bcrypt from 'bcrypt'
 import 'dotenv/config'
 
 import jwt from 'jsonwebtoken'
@@ -38,26 +38,41 @@ app.post('/usuarios/login/:id', async (req, res) => {
     }
   })
 
-  const compare = await bcrypt.compare(usuarioRecebido.senha, usuario?.senha|| "")
+  const compare = await bcrypt.compare(usuarioRecebido.senha, usuario?.senha || "")
 
   if (compare) {
 
     const senhaToken = process.env.JWTSENHA
-     
+
+    const token = jwt.sign(
+      {
+        id: usuario?.id,
+        email: usuario?.email
+      },
+      senhaToken || '',
+
+      { expiresIn: '1m' }
+    )
+
 
     return res.status(200).json({
       message: "Usuario encontrado",
-      data: usuario
+      data: {
+        email: usuario?.email,
+        id:usuario?.id,
+        token: token,
+        
+      }
     })
-    
+
   }
 
 
 
   return res.status(401).json({
-      message: "Usuario ou senha incorreto",
-      data: {}
-    })
+    message: "Usuario ou senha incorreto",
+    data: {}
+  })
 
 
 })
@@ -84,14 +99,14 @@ app.get('/usuarios/:id', async (req, res) => {
 
 app.post("/usuarios", async (req, res) => {
   console.log(req.body)
-  
+
   const dadosUsuario = req.body as Usuario
-  const senhaHash =await bcrypt.hash(dadosUsuario.senha,10)
+  const senhaHash = await bcrypt.hash(dadosUsuario.senha, 10)
   const usuarioCriado = await prisma.usuario.create({
     data: {
       email: dadosUsuario.email,
       nome: dadosUsuario.nome,
-      senha:senhaHash
+      senha: senhaHash
     }
   })
   return res.status(201).json({
@@ -148,7 +163,7 @@ app.delete("/usuarios/:id", async (req, res) => {
 //  -- Exames --
 
 app.get('/exames', async (req, res) => {
-  
+
   try {
     const exames = await prisma.exame.findMany()
 
@@ -161,17 +176,17 @@ app.get('/exames', async (req, res) => {
 
     }
 
-    
-      return res.status(200).json({
-        message: "Nem um exame marcado",
-        data: exames
-  
-      })
-      
-      
-    
 
-    
+    return res.status(200).json({
+      message: "Nem um exame marcado",
+      data: exames
+
+    })
+
+
+
+
+
 
 
   } catch (error) {
@@ -304,8 +319,8 @@ app.delete('/exames/:id', async (req, res) => {
       }
     })
 
-   
-    
+
+
     return res.status(200).json({
       message: "Exame deletado",
       data: exame
