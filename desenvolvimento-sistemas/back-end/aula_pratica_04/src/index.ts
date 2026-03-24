@@ -2,9 +2,6 @@ import express from 'express';
 import { prisma } from './prisma/prisma';
 import type { Usuario, Exame } from './prisma/generated/prisma/client';
 import bcrypt from 'bcrypt'
-import 'dotenv/config'
-
-import jwt from 'jsonwebtoken'
 
 
 const app = express();
@@ -42,25 +39,12 @@ app.post('/usuarios/login/:id', async (req, res) => {
 
   if (compare) {
 
-    const senhaToken = process.env.JWTSENHA
-
-    const token = jwt.sign(
-      {
-        id: usuario?.id,
-        email: usuario?.email
-      },
-      senhaToken || '',
-
-      { expiresIn: '1m' }
-    )
-
-
     return res.status(200).json({
       message: "Usuario encontrado",
       data: {
         email: usuario?.email,
         id:usuario?.id,
-        token: token,
+       
         
       }
     })
@@ -341,5 +325,6 @@ app.delete('/exames/:id', async (req, res) => {
 app.listen(port, () => {
   console.log("Servidor ta de pé :p")
 })
+
 
 
