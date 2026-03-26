@@ -9,9 +9,9 @@
 * 🟢 You can import this file directly.
 */
 
-export const Tipo = {
-  NORMAL: 'NORMAL',
+export const TypeToken = {
+  ACCESS: 'ACCESS',
   REFRESH: 'REFRESH'
 } as const
 
-export type Tipo = (typeof Tipo)[keyof typeof Tipo]
+export type TypeToken = (typeof TypeToken)[keyof typeof TypeToken]

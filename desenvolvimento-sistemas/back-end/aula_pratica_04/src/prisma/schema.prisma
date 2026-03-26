@@ -34,18 +34,17 @@ model Exame {
   @@map("exame")
 }
 
-enum Tipo {
-  NORMAL
+enum TypeToken {
+  ACCESS
   REFRESH
 }
 
 model Token {
-  id        Int      @id @default(autoincrement())
-  token     String
-  type      Tipo     @default(NORMAL)
-  revoked   Boolean  @default(false)
+  id        Int       @id @default(autoincrement())
+  token     String    @db.VarChar(255)
+  type      TypeToken @default(ACCESS)
+  revoked   Boolean   @default(false)
   expiresAt DateTime
-
   usuarioId Int
 
   usuario Usuario @relation(fields: [usuarioId], references: [id])

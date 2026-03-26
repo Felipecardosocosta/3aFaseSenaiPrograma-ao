@@ -788,16 +788,16 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Tipo'
+ * Reference to a field of type 'TypeToken'
  */
-export type EnumTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Tipo'>
+export type EnumTypeTokenFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeToken'>
     
 
 
 /**
- * Reference to a field of type 'Tipo[]'
+ * Reference to a field of type 'TypeToken[]'
  */
-export type ListEnumTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Tipo[]'>
+export type ListEnumTypeTokenFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeToken[]'>
     
 
 
