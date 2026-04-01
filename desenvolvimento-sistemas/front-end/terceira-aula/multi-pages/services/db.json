@@ -1,4 +1,78 @@
 {
+    "autores": [
+        {
+            "id": 1,
+            "nome": "Machado de Assis",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Escritor brasileiro, considerado um dos maiores nomes da literatura nacional.",
+            "biografia": "Machado de Assis foi romancista, cronista, dramaturgo e poeta, fundador da Academia Brasileira de Letras.",
+            "especialidade": "Literatura Brasileira",
+            "cidade": "Rio de Janeiro"
+        },
+        {
+            "id": 2,
+            "nome": "Clarice Lispector",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Autora conhecida por sua escrita introspectiva e inovadora.",
+            "biografia": "Clarice Lispector destacou-se por romances e contos com forte profundidade psicológica.",
+            "especialidade": "Romance Psicológico",
+            "cidade": "Recife"
+        },
+        {
+            "id": 3,
+            "nome": "Jorge Amado",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Escritor brasileiro famoso por retratar a cultura baiana.",
+            "biografia": "Jorge Amado escreveu obras marcantes como 'Gabriela, Cravo e Canela'.",
+            "especialidade": "Romance Regionalista",
+            "cidade": "Salvador"
+        },
+        {
+            "id": 4,
+            "nome": "Carlos Drummond de Andrade",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Poeta modernista brasileiro de grande relevância.",
+            "biografia": "Drummond foi um dos principais poetas do modernismo brasileiro.",
+            "especialidade": "Poesia",
+            "cidade": "Itabira"
+        },
+        {
+            "id": 5,
+            "nome": "Monteiro Lobato",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Autor pioneiro da literatura infantil no Brasil.",
+            "biografia": "Monteiro Lobato criou o Sítio do Picapau Amarelo e marcou gerações.",
+            "especialidade": "Literatura Infantil",
+            "cidade": "Taubaté"
+        },
+        {
+            "id": 6,
+            "nome": "Graciliano Ramos",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Escritor brasileiro do regionalismo nordestino.",
+            "biografia": "Graciliano Ramos escreveu obras como 'Vidas Secas'.",
+            "especialidade": "Romance Regionalista",
+            "cidade": "Maceió"
+        },
+        {
+            "id": 7,
+            "nome": "Érico Veríssimo",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Romancista brasileiro de grande sucesso.",
+            "biografia": "Érico Veríssimo é autor da trilogia 'O Tempo e o Vento'.",
+            "especialidade": "Romance Histórico",
+            "cidade": "Porto Alegre"
+        },
+        {
+            "id": 8,
+            "nome": "Cecília Meireles",
+            "foto": "https://placehold.co/300x300",
+            "descricao": "Poetisa brasileira renomada.",
+            "biografia": "Cecília Meireles destacou-se por sua poesia lírica e educativa.",
+            "especialidade": "Poesia",
+            "cidade": "Rio de Janeiro"
+        }
+    ],
     "posts": [
         {
             "id": "1",
@@ -6,32 +80,28 @@
             "title": "a title",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "views": 10
-        }
-        ,
+        },
         {
             "id": "2",
             "image": "https://placehold.co/300x200",
             "title": "another title",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "views": 250
-        }
-        ,
+        },
         {
             "id": "3",
             "image": "https://placehold.co/300x200",
             "title": "another title",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "views": 300
-        }
-        ,
+        },
         {
             "id": "4",
             "image": "https://placehold.co/300x200",
             "title": "another title",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "views": 500
-        }
-        ,
+        },
         {
             "id": "5",
             "image": "https://placehold.co/300x200",
@@ -39,7 +109,7 @@
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "views": 2
         }
-        ],
+    ],
     "comments": [
         {
             "id": "1",
