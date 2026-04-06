@@ -15,15 +15,15 @@ const Authors = () => {
  
      return (
          <>
-             <div className='flex gap-2 pt-5 flex-wrap gap-7' >
+             <div className='flex gap-2 pt-5 flex-wrap gap-7 ' >
                  {
                      autores.map(autor => (
-                         <div key={autor.id} className='card'>
+                         <div key={autor.id} className='card dark:bg-gray-800'>
                              <img src={autor.foto} alt={autor.nome} />
                              <h1>{autor.nome}</h1>
                              <h3>{autor.especialidade}</h3>
                              <p>{autor.cidade}</p>
-                             <Link to={`/autores/${autor.id}`} >Ver Mais</Link>
+                             <Link to={`/autores/${autor.id}`} className='hover:bg-black dark:bg-gray-900 : ' >Ver Mais</Link>
                          </div>
                      ))
                  }

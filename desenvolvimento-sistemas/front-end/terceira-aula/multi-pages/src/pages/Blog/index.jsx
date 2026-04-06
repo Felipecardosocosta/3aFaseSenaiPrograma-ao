@@ -16,7 +16,7 @@ export const Blog = () => {
             <div className='flex gap-2' >
                 {
                     posts.map(post => (
-                        <div key={post.id} className='card'>
+                        <div key={post.id} className='card dark:bg-gray-900 pt-10 mt-20'>
                             <img src={post.image} alt={post.title} />
                             <h2>{post.title}</h2>
                             <h3>{post.views}</h3>

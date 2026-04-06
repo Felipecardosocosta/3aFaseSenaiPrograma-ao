@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 const Main = () => {
   return (
-    <div className='flex min-h-screen flex-col' >
+    <div className='flex min-h-screen flex-col dark:bg-neutral-900 text-white' >
         <Header/>
         <main className='flex-1 container mx-auto'>
 

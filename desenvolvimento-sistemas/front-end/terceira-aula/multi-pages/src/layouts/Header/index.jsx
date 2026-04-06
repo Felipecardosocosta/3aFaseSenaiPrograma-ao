@@ -14,28 +14,28 @@ const Header = () => {
   }
 
   return (
-    <header className='flex items-center justify-between p-4 bg-gray-200 ' >
+    <header className='flex items-center justify-between p-4 bg-gray-200  dark:bg-gray-800 text-white' >
 
       <nav className='space-x-4'>
 
         <NavLink
           to={'/'}
           end
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}
+          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-white"}
         >Home
         </NavLink>
 
         <NavLink
           to={'/sobre'}
           end
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}
+          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-white"}
         >
           Sobre
         </NavLink>
         <NavLink
           to={'/blog'}
           end
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}
+          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-white"}
         >
           Blog
         </NavLink>
@@ -43,7 +43,7 @@ const Header = () => {
         <NavLink
           to={'/autores'}
           end
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}
+          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-white"}
         >
           Autores
         </NavLink>
