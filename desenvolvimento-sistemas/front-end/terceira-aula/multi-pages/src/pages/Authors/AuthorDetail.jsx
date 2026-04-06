@@ -21,7 +21,7 @@ const AuthorDetail = () => {
         <>
 
             {autor ?
-            <div key={autor.id} className='flex flex-col detalhes p-10 border-1  '>
+            <div key={autor.id} className='flex flex-col detalhes p-10 border-1'>
                 <img className='w-70' src={autor.foto} alt={autor.nome} />
                 <h1 className='font-bold'>{autor.nome}</h1>
                 <h3>{autor.especialidade}</h3>

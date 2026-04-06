@@ -23,7 +23,7 @@ const Authors = () => {
                              <h1>{autor.nome}</h1>
                              <h3>{autor.especialidade}</h3>
                              <p>{autor.cidade}</p>
-                             <Link to={`/autores/${autor.id}`} className='hover:bg-black dark:bg-gray-900 : ' >Ver Mais</Link>
+                             <Link to={`/autores/${autor.id}`} className='hover:bg-black dark:bg-gray-900' >Ver Mais</Link>
                          </div>
                      ))
                  }
