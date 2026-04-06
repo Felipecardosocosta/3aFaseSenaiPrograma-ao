@@ -21,13 +21,14 @@ const AuthorDetail = () => {
         <>
 
             {autor ?
-            <div key={autor.id} className='detalhes pt-10'>
-                <img src={autor.foto} alt={autor.nome} />
+            <div key={autor.id} className='flex flex-col detalhes p-10 border-1  '>
+                <img className='w-70' src={autor.foto} alt={autor.nome} />
                 <h1>{autor.nome}</h1>
                 <h3>{autor.especialidade}</h3>
                 <p>{autor.cidade}</p>
+
                 <p>{autor.descricao}</p>
-                <Link onClick={()=> navigate(-1)} >Voltar</Link>
+                <Link className='bg-amber-600 rounded px-3 py-1 ' onClick={()=> navigate(-1)} >Voltar</Link>
             </div>:
             <>
             <p>Carregando...</p>
