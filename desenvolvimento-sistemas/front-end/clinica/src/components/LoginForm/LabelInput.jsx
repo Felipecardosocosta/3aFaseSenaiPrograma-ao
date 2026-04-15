@@ -1,29 +1,34 @@
 import React from 'react'
 
-export const LabelInput = ({ type, text, name, ...rest}) => {
+
+export const LabelInput = ({ type, text, name,value,setValue, ...rest}) => {
 
      
 
     return (
-        <div className='flex flex-col gap-1'>
+        <fieldset className='flex flex-col gap-1'>
             <label
-                htmlFor={name}
+                htmlFor={type}
                 className=''
             >{text}:
             </label>
 
             <input
-                
+                id={type}
                 type={type}
                 name={name}
-                className='border-1 rounded'
+                className='w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={value}
+                onChange={(e)=>setValue(e.target.value)}
                 {...rest}
+             
                 
+               
              
             />
 
 
-        </div>
+        </fieldset>
     )
 }
 
