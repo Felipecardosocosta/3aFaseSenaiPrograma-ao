@@ -2,6 +2,7 @@ import { Router } from "express";
 import { prisma } from "../prisma/prisma";
 import type { Usuario } from "../prisma/generated/prisma/client";
 import { createHash } from "../utils/createHash";
+import { usuarioContrller } from "../controller/UsuarioController";
 
 const usuariosRouter = Router()
 
@@ -36,19 +37,8 @@ usuariosRouter.post("/usuarios", async (req, res) => {
 
 
 usuariosRouter.put("/usuarios/:id", async (req, res) => {
-  const idUsuario = Number(req.params.id)
-  const dadosParaAtualizar = req.body as Omit<Usuario, 'id'>
-
-  const usuarioAtualizado = await prisma.usuario.update({
-    data: {
-      ...dadosParaAtualizar
-    },
-    where: {
-      id: idUsuario
-    }
-  })
-
-  return res.status(200).json(usuarioAtualizado);
+  return usuarioContrller.atualizar(req,res)
+  
 })
 
 usuariosRouter.delete('/usuarios/:id', async (req, res) => {
