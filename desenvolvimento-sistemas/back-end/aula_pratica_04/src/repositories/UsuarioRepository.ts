@@ -45,6 +45,16 @@ export class UsuarioRepository {
 
 
     }
+    async criar(dadosUsuario: Partial<Usuario>) {
+        return await prisma.usuario.create({
+            data: {
+                email: dadosUsuario.email || "",
+                senha: dadosUsuario.senha || "",
+                nome: dadosUsuario.nome || ""
+            }
+        })
+
+    }
 
 
 

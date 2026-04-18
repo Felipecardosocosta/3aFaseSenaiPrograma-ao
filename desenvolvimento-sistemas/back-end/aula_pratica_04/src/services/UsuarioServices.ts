@@ -1,5 +1,6 @@
 import type { Usuario } from "../prisma/generated/prisma/client";
 import { usuarioRepository, type UsuarioRepository } from "../repositories/UsuarioRepository";
+import { createHash } from "../utils/createHash";
 
 
 
@@ -14,6 +15,18 @@ export class UsuarioService{
     async buscarPorId(id: number){
         return await this.repository.buscarPorId(id)
     }
+
+    async cadastrar(dadosUsuario: Usuario) {
+            const hash = await createHash(dadosUsuario.senha);
+    
+            const usuarioCriado = await this.repository.criar({
+                email: dadosUsuario.email,
+                nome: dadosUsuario.nome || null,
+                senha: hash
+            })
+            return usuarioCriado
+        }
+    
 
 
 

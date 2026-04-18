@@ -1,30 +1,30 @@
 import type { Response,Request } from "express";
-import { usuarioService, type UsuarioService } from "../services/UsuarioServices";
 import { log } from "node:console";
-import type { Usuario } from "../prisma/generated/prisma/client";
+import type { Exame } from "../prisma/generated/prisma/client";
+import { exameService, type ExameService } from "../services/ExameServices";
 
-class UsuarioController {
-    constructor(private readonly service: UsuarioService) {
+class ExameController {
+    constructor(private readonly service: ExameService) {
         
     }
 
     async buscarTodos(req:Request,res:Response){
 
         try {
-            const usuariosBuscados = await this.service.buscarTodos()
+            const examesBuscados = await this.service.buscarTodos()
 
-            if (usuariosBuscados.length>0) {
+            if (examesBuscados.length>0) {
 
                 return res.status(200).json({
                     message:"Nao tem usuarios cadastrados",
-                    data:usuariosBuscados
+                    data:examesBuscados
                 })
                 
             }
             
             return res.status(200).json({
                 message:"usuarios encontrados",
-                data:usuariosBuscados
+                data:examesBuscados
             })
 
         } catch (error) {
@@ -41,12 +41,12 @@ class UsuarioController {
 
         try {
             const id = Number(req.params.id)
-            const usuarios = await this.service.buscarPorId(id)
+            const exame = await this.service.buscarPorId(id)
 
-            if (usuarios) {
+            if (exame) {
                 return res.status(200).json({
-                    message:"usuario encontrado",
-                    data:usuarios
+                    message:"Exame encontrado",
+                    data:exame
                 })
                 
             }
@@ -71,11 +71,11 @@ class UsuarioController {
 
             const id = Number(req.params.id)
 
-            const usuarioDeletado = await this.service.deletar(id)
+            const exameDeletado = await this.service.deletar(id)
 
             return res.status(200).json({
-                message:"usuario deletado",
-                data:usuarioDeletado
+                message:"Exame deletado",
+                data:exameDeletado
             }
         )
             
@@ -88,15 +88,15 @@ class UsuarioController {
             
         }
     }
-    async criarUsuario(req: Request, res: Response) {
+    async criarExame(req: Request, res: Response) {
 
         try {
 
-            const dadosUsuario = req.body as Usuario
-            const usuarioCadastrado = await this.service.cadastrar(dadosUsuario)
+            const dadosExame = req.body as Exame
+            const usuarioCadastrado = await this.service.cadastrar(dadosExame)
 
             return res.status(201).json({
-                message: "Usuario criado com sucesso",
+                message: "Exame criado com sucesso",
                 data: usuarioCadastrado
             })
 
@@ -117,7 +117,7 @@ class UsuarioController {
 
         try {
             const id = Number(req.params)
-            const dadosParaAtualizar = req.body as Omit<Usuario, "id">
+            const dadosParaAtualizar = req.body  as Omit<Exame, 'id'>
 
             const dadosAtualizados = await this.service.atualizar({...dadosParaAtualizar,id})
 
@@ -140,4 +140,4 @@ class UsuarioController {
 }
 
 
-export const usuarioController = new UsuarioController(usuarioService)
+export const exameController = new ExameController(exameService)

@@ -10,7 +10,7 @@ export class AuthRepository {
 
 
     async cadastrar(dadosUsuario: Partial<Usuario>) {
-        return prisma.usuario.create({
+        return this.prisma.usuario.create({
             data: {
                 email: dadosUsuario.email || "",
                 senha: dadosUsuario.senha || "",
@@ -21,7 +21,7 @@ export class AuthRepository {
     }
 
     async existeUsuario(email: string) {
-        return prisma.usuario.findUnique({
+        return this.prisma.usuario.findUnique({
             where: {
                 email: email || '',
             }
