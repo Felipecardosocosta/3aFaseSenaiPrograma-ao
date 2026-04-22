@@ -10,6 +10,8 @@ export class UsuarioService{
     }
 
     async buscarTodos(){
+        
+
         return await this.repository.buscarTodos()
     }
     async buscarPorId(id: number){

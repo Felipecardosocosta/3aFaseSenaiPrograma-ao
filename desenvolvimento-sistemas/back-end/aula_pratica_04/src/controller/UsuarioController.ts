@@ -13,15 +13,6 @@ class UsuarioController {
         try {
             const usuariosBuscados = await this.service.buscarTodos()
 
-            if (usuariosBuscados.length>0) {
-
-                return res.status(200).json({
-                    message:"Nao tem usuarios cadastrados",
-                    data:usuariosBuscados
-                })
-                
-            }
-            
             return res.status(200).json({
                 message:"usuarios encontrados",
                 data:usuariosBuscados
