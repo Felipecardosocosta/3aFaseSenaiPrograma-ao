@@ -1,45 +1,57 @@
 import React, { useState } from 'react'
-import { LabelInput } from './LabelInput'
+import { LabelInput } from '../LabelInput/LabelInput'
 import { useAuth } from '../../contexts/AuthContext'
 import { toast } from 'react-toastify'
 
 import { Link, useNavigate } from 'react-router'
 import axios from 'axios'
+import Modal from '../Modal'
+import RegisterUser from '../RegisterUser'
 
 export const LoginForm = () => {
 
   const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
-  const {login} = useAuth()
+
+  const [password, setPassword] = useState('')
+
+  const { login } = useAuth()
+
   const navigate = useNavigate()
 
-  const handleSubmit= async(e)=> {
+  const [isModalOpen, setIsMotalOpen] = useState(false)
+
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      const response = await axios.get('http://localhost:3000/users',{
-        params: {email,senha}
+      const response = await axios.get('http://localhost:3000/users', {
+        params: { email, password }
       })
-      if (response.data.length ===0) {
-        toast.error("Usuario não encontrado. Verifique o email e senha",{ autoClose:3000,hideProgressBar:true})
+      if (response.data.length === 0) {
+        toast.error("Usuario não encontrado. Verifique o email e senha", { autoClose: 3000, hideProgressBar: true })
         return
       }
-      toast.success("Login realizado com sucesso!",{
-        autoClose:2000
-        }
+      toast.success("Login realizado com sucesso!", {
+        autoClose: 2000
+      }
       )
 
       login(response.data[0].email)
+      navigate('/dashboard')
+
 
     } catch (error) {
 
-      toast.error("Erro interno no servidor",{
-        autoClose:3000,
-        
+      toast.error("Erro interno no servidor", {
+        autoClose: 3000,
+
       })
-      
+
     }
-    
+
   }
 
   return (
@@ -51,6 +63,7 @@ export const LoginForm = () => {
         className='space-y-4'
       >
         <LabelInput
+          id={"email"}
           type={'email'}
           name={'email'}
           text={"Email"}
@@ -60,13 +73,14 @@ export const LoginForm = () => {
 
         />
         <LabelInput
+          id={"password"}
           type={'password'}
           name={'senha'}
           text={"Senha"}
           minLength={8}
           required
-          value={senha}
-          setValue={setSenha}
+          value={password}
+          setValue={setPassword}
         />
 
 
@@ -77,8 +91,42 @@ export const LoginForm = () => {
         >
           Entrar
         </button>
-        <p>Não possui login ? <Link className='text-cyan-700 hover:text-cyan-800'>Cadastrar</Link></p>
       </form>
+      <div className='flex justify-between mt-4 text-sm'
+
+
+      >
+        <button
+          className='text-blue-600 hover:underline'
+          onClick={() => toast.info("Funcionalidade em desenvolvimento")}
+        >
+          Esqueceu sua senha?
+
+        </button>
+
+
+        <button
+          onClick={() => setIsMotalOpen(true)}
+          className='text-blue-600 hover:underline'
+        >
+          Criar Conta
+
+
+        </button>
+
+
+
+      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsMotalOpen(false)}
+
+      >
+        <RegisterUser />
+
+
+      </Modal>
+
 
     </div>
   )

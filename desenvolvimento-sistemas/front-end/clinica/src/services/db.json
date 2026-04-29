@@ -1,9 +1,26 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "email": "joao@email.com",
-            "password": "123"
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "email": "joao@email.com",
+      "password": "a12345678",
+      "name": "joao"
+    },
+    {
+      "email": "felipe@gmail.com",
+      "password": "123456789",
+      "id": "NFr27l2UNsQ"
+    },
+    {
+      "email": "felipe1@gmail.com",
+      "password": "a12345678",
+      "id": "BoPI6Prg5tM"
+    },
+    {
+      "email": "felip11e@gmail.com",
+      "password": "f12345678",
+      "id": "xUDrJ9nfnaU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
