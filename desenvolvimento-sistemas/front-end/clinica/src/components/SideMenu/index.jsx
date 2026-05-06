@@ -66,7 +66,7 @@ const SideMenu = () => {
                 <ul className='space-y-3 '>
                     <li>
                         <Link 
-                        to={"/dashboard"}
+                        to={"/home"}
                         className='flex items-center gap-3 hover:text-cyan-300'
                         
                         > 
@@ -79,7 +79,7 @@ const SideMenu = () => {
                     </li>
                     <li>
                         <Link 
-                        to={"/dashboard"}
+                        to={"/patients"}
                         className='flex items-center gap-3 hover:text-cyan-300'
                         
                         > 
@@ -92,7 +92,7 @@ const SideMenu = () => {
                     </li>
                     <li>
                         <Link 
-                        to={"/dashboard"}
+                        to={"/consults"}
                         className='flex items-center gap-3 hover:text-cyan-300'
                         
                         > 
@@ -105,7 +105,7 @@ const SideMenu = () => {
                     </li>
                     <li>
                         <Link 
-                        to={"/dashboard"}
+                        to={"/exams"}
                         className='flex items-center gap-3 hover:text-cyan-300'
                         
                         > 
