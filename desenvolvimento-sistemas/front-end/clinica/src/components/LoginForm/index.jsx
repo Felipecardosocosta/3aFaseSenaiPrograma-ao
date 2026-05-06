@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LabelInput } from '../LabelInput/LabelInput'
 import { useAuth } from '../../contexts/AuthContext'
 import { toast } from 'react-toastify'
 
-import { Link, useNavigate } from 'react-router'
+import { Link, Navigate, useNavigate } from 'react-router'
 import axios from 'axios'
 import Modal from '../Modal'
 import RegisterUser from '../RegisterUser'
@@ -14,13 +14,19 @@ export const LoginForm = () => {
 
   const [password, setPassword] = useState('')
 
-  const { login } = useAuth()
+  const { login,user } = useAuth()
 
   const navigate = useNavigate()
 
   const [isModalOpen, setIsMotalOpen] = useState(false)
 
+  useEffect(()=>{
+    if (user) {
+         navigate('/dashboard')
+     }
 
+
+  },[user,navigate])
 
 
   const handleSubmit = async (e) => {

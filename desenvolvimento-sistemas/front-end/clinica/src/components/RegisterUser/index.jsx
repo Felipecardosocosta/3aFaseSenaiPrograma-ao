@@ -26,7 +26,7 @@ const RegisterUser = () => {
     }
 
 
-    const hadleSubimt = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!isPasswordValid()) {
@@ -76,7 +76,7 @@ const RegisterUser = () => {
 
             </h2>
 
-            <form onSubmit={hadleSubimt}>
+            <form onSubmit={handleSubmit}>
                 <fieldset>
                     <LabelInput
                         id={"email"}

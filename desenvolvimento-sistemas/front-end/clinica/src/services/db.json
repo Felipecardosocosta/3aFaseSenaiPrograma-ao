@@ -20,6 +20,11 @@
       "email": "felip11e@gmail.com",
       "password": "f12345678",
       "id": "xUDrJ9nfnaU"
+    },
+    {
+      "email": "felipe1ss@gmail.com",
+      "password": "a12345678",
+      "id": "Y5lNYesbTpA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
