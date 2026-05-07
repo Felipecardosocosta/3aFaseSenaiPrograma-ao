@@ -16,14 +16,14 @@ class ExameController {
             if (examesBuscados.length>0) {
 
                 return res.status(200).json({
-                    message:"Nao tem usuarios cadastrados",
+                    message:"Nao tem Exame cadastrados",
                     data:examesBuscados
                 })
                 
             }
             
             return res.status(200).json({
-                message:"usuarios encontrados",
+                message:"Exame encontrados",
                 data:examesBuscados
             })
 
