@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 
 import {
     MdDashboard,
@@ -65,9 +65,9 @@ const SideMenu = () => {
             <nav className='flex-1 p-4 space-y-4 overflow-y-auto'>
                 <ul className='space-y-3 '>
                     <li>
-                        <Link 
-                        to={"/home"}
-                        className='flex items-center gap-3 hover:text-cyan-300'
+                        <NavLink 
+                        to={"/dashboard"}
+                        className={({isActive})=> !isActive?'flex items-center gap-3 hover:text-cyan-300':"flex items-center gap-3 text-cyan-300"}
                         
                         > 
                         <MdDashboard
@@ -75,25 +75,24 @@ const SideMenu = () => {
                         />
                         {!isCollapsed && <span>Inicio</span>}
                         
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link 
+                        <NavLink
                         to={"/patients"}
-                        className='flex items-center gap-3 hover:text-cyan-300'
-                        
+                        className={({isActive})=> !isActive?'flex items-center gap-3 hover:text-cyan-300':"flex items-center gap-3 text-cyan-300"}
                         > 
                         <FaUserPlus
                         size={20}
                         />
                         {!isCollapsed && <span>Pacientes</span>}
                         
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link 
+                        <NavLink 
                         to={"/consults"}
-                        className='flex items-center gap-3 hover:text-cyan-300'
+                        className={({isActive})=> !isActive?'flex items-center gap-3 hover:text-cyan-300': "flex items-center gap-3 text-cyan-300"}
                         
                         > 
                         <FaCalendarCheck
@@ -101,12 +100,12 @@ const SideMenu = () => {
                         />
                         {!isCollapsed && <span>Consultas</span>}
                         
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link 
+                        <NavLink 
                         to={"/exams"}
-                        className='flex items-center gap-3 hover:text-cyan-300'
+                        className={({isActive})=> !isActive?'flex items-center gap-3 hover:text-cyan-300':"flex items-center gap-3 text-cyan-300"}
                         
                         > 
                         <FaListAlt
@@ -114,7 +113,7 @@ const SideMenu = () => {
                         />
                         {!isCollapsed && <span>Exame</span>}
                         
-                        </Link>
+                        </NavLink>
                     </li>
 
 
