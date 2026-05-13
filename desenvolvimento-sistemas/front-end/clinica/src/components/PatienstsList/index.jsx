@@ -57,9 +57,7 @@ const PatientsList = () => {
         setSearchTerm(e.target.value)
     }
 
-    const filteredPatiens = patients.filter((patients)=>{
-        [patients.fullName,patients.email,patients.phone].join(" ").toLowerCase().includes(searchTerm.toLowerCase())
-    })
+    const filteredPatiens = patients.filter( (patients)=> [patients.fullName,patients.email,patients.phone].join(" ").toLowerCase().includes(searchTerm.toLowerCase()) )
 
 
   return (
