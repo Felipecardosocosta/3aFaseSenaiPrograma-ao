@@ -9,8 +9,10 @@ export class ExameService {
 
     }
 
-    async buscarTodos() {
-        return await this.repository.buscarTodos()
+    async buscarTodos(pagina?:number,limite?:number) {
+
+
+        return await this.repository.buscarTodos(pagina,limite)
     }
     async buscarPorId(id: number) {
         return await this.repository.buscarPorId(id)

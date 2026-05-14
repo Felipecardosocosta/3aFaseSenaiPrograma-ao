@@ -6,9 +6,29 @@ export class ExamesRepository {
         this.prisma = prisma
     }
 
-    async buscarTodos() {
+    async buscarTodos(pagina?:number,limite?:number) {
 
-        return await this.prisma.exame.findMany()
+        const existePaginacao = pagina! && limite!
+
+        if (!existePaginacao) return {exames:await this.prisma.exame.findMany()}
+        
+        const exames = await this.prisma.exame.findMany({
+            skip: (pagina-1) * limite,
+            take: limite
+        })
+
+
+        const total = await this.prisma.exame.count()
+
+        const totalPaginas = Math.ceil(total/limite)
+
+
+        return {
+            exames,
+            total,
+            totalPaginas,
+
+        }
     }
     async buscarPorId(id: number) {
 

@@ -1,10 +1,11 @@
 import type { Response,Request } from "express";
 import { log } from "node:console";
-import type { Exame } from "../prisma/generated/prisma/client";
-import { exameService, type ExameService } from "../services/ExameServices";
+import type { Paciente } from "../prisma/generated/prisma/client";
+import { pacienteService, type PacienteService } from "../services/PacienteServices";
 
-class ExameController {
-    constructor(private readonly service: ExameService) {
+
+class PacienteController {
+    constructor(private readonly service: PacienteService) {
         
     }
 
@@ -14,22 +15,16 @@ class ExameController {
         const limite = req.query.limite ? Number(req.query.limite): undefined
 
         try {
-            const examesBuscados = await this.service.buscarTodos(pagina,limite)
+            const pacienteBuscados = await this.service.buscarTodos(pagina,limite)
 
-            if (examesBuscados.exames.length===0) {
+            if (pacienteBuscados.data.paciente.length ===0) {
 
-                return res.status(200).json({
-                    message:"Nao tem Exame cadastrados",
-                    data:examesBuscados
-                })
+                return res.status(200).json(pacienteBuscados)
                 
             }
 
             
-            return res.status(200).json({
-                message:"Exame encontrados",
-                data:examesBuscados
-            })
+            return res.status(200).json(pacienteBuscados)
 
         } catch (error) {
 
@@ -45,13 +40,10 @@ class ExameController {
 
         try {
             const id = Number(req.params.id)
-            const exame = await this.service.buscarPorId(id)
+            const paciente = await this.service.buscarPorId(id)
 
-            if (exame) {
-                return res.status(200).json({
-                    message:"Exame encontrado",
-                    data:exame
-                })
+            if (paciente) {
+                return res.status(200).json(paciente)
                 
             }
         
@@ -77,11 +69,7 @@ class ExameController {
 
             const exameDeletado = await this.service.deletar(id)
 
-            return res.status(200).json({
-                message:"Exame deletado",
-                data:exameDeletado
-            }
-        )
+            return res.status(200).json(exameDeletado)
             
         } catch (error) {
             log(error)
@@ -92,17 +80,14 @@ class ExameController {
             
         }
     }
-    async criarExame(req: Request, res: Response) {
+    async criar(req: Request, res: Response) {
 
         try {
 
-            const dadosExame = req.body as Exame
-            const usuarioCadastrado = await this.service.cadastrar(dadosExame)
+            const dadosPaciente = req.body as Paciente
+            const usuarioCadastrado = await this.service.criar(dadosPaciente)
 
-            return res.status(201).json({
-                message: "Exame criado com sucesso",
-                data: usuarioCadastrado
-            })
+            return res.status(201).json(usuarioCadastrado)
 
         } catch (error) {
 
@@ -121,15 +106,11 @@ class ExameController {
 
         try {
             const id = Number(req.params)
-            const dadosParaAtualizar = req.body  as Omit<Exame, 'id'>
+            const dadosParaAtualizar = req.body  as Omit<Paciente, 'id'>
 
             const dadosAtualizados = await this.service.atualizar({...dadosParaAtualizar,id})
 
-            return res.status(200).json({
-                message:"Dados Atualizados",
-                data:dadosAtualizados
-                
-            });
+            return res.status(200).json(dadosAtualizados);
             
         } catch (error) {
              log(error)
@@ -144,4 +125,4 @@ class ExameController {
 }
 
 
-export const exameController = new ExameController(exameService)
+export const pacienteController = new PacienteController(pacienteService)

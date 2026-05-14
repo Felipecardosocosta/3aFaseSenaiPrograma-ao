@@ -1,72 +1,73 @@
 import type { Paciente } from "../prisma/generated/prisma/client";
-import type { PacienteRepository } from "../repositories/PacienteRepository";
+import { pacienteRepository, PacienteRepository } from "../repositories/PacienteRepository";
 
 
 
 
-export class PacienteService{
-    constructor(private readonly repository : PacienteRepository){
+export class PacienteService {
+    constructor(private readonly repository: PacienteRepository) {
 
-        this.repository=repository
+        this.repository = repository
     }
 
-    async criar(dadosPaciente: Paciente){
+    async criar(dadosPaciente: Paciente) {
 
         if (!dadosPaciente) {
 
             throw new Error("Dados invalidos")
         }
 
-         return {
+        return {
             data: await this.repository.criar(dadosPaciente),
-            message:"Usuario criado com sucesso"
+            message: "Usuario criado com sucesso"
         }
 
     }
 
-    async buscarTodos(){
+    async buscarTodos(pagina?: number, limite?: number) {
 
-        const buscarDados = await this.repository.buscarTodos()
-        if (buscarDados.length===0) {
+        const buscarDados = await this.repository.buscarTodos(pagina, limite)
+
+        if (buscarDados.paciente.length === 0) {
 
             return {
-                data:buscarDados,
-                message:"Não tem pacientes cadastrados"
+                data: buscarDados,
+                message: "Não tem pacientes cadastrados"
             }
 
-            
+
         }
 
         return {
-            data:buscarDados,
-            message:"Pacientes encontrados"
+            data: buscarDados,
+            message: "Pacientes encontrados"
         }
 
 
     }
 
 
-    async buscarPorId(id:number){
+    async buscarPorId(id: number) {
 
         const pacienteBuscado = await this.repository.buscarPorId(id)
 
         if (!pacienteBuscado?.cpf) {
 
             return {
-                data:pacienteBuscado,
-                message:"Paciente não encontrado"
+                data: pacienteBuscado,
+                message: "Paciente não encontrado"
             }
-            
+
         }
 
         return {
-                data:pacienteBuscado,
-                message:"Paciente encontrado"
-            }
+            data: pacienteBuscado,
+            message: "Paciente encontrado"
+        }
 
     }
 
-    async atualizar(dadosPaciente:Paciente){
+    async atualizar(dadosPaciente: Paciente) {
 
 
         if (!dadosPaciente) {
@@ -78,21 +79,44 @@ export class PacienteService{
         if (!buscarDados) {
 
             throw new Error("Paciente nao encontrado")
-            
+
         }
 
         const atualizarDados = await this.repository.atualizar(dadosPaciente)
 
         return {
-            data:atualizarDados,
-            message:"Paciente Atualizado"
+            data: atualizarDados,
+            message: "Paciente Atualizado"
         }
 
-       
+
     }
 
-    
+
+    async deletar(id: number) {
+
+
+        const pacienteParaDeletar = await this.repository.buscarPorId(id)
+
+        if (!pacienteParaDeletar) return {
+            data: pacienteParaDeletar,
+            message: "Paciente não encontrado"
+        }
+
+        const deletandoPaciente = await this.repository.deletar(id)
+        
+        return {
+            data: deletandoPaciente,
+            message: "Paciente Deletado"
+        }
+
+
+    }
+
+
 
 
 
 }
+
+export const pacienteService = new PacienteService(pacienteRepository)

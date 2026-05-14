@@ -19,8 +19,31 @@ export class PacienteRepository{
         })
     }
 
-    async buscarTodos(){
-        return await this.prisma.paciente.findMany()
+    async buscarTodos(pagina?:number,limite?:number){
+
+         const existePaginacao = pagina! && limite!
+
+        if (!existePaginacao) return {paciente:await this.prisma.paciente.findMany()}
+        
+        const paciente = await this.prisma.exame.findMany({
+            skip: (pagina-1) * limite,
+            take: limite
+        })
+
+
+        const total = await this.prisma.exame.count()
+
+        const totalPaginas = Math.ceil(total/limite)
+
+
+        return {
+            paciente,
+            total,
+            totalPaginas,
+
+        }
+
+
     }
 
 
@@ -47,7 +70,6 @@ export class PacienteRepository{
         return await this.prisma.paciente.update({
             data:{
                 nome: dadosPaciente.nome,
-                cpf:dadosPaciente.cpf,
                 telefone:dadosPaciente.telefone,
                 email:dadosPaciente.email,
                 data_nascimento:dadosPaciente.data_nascimento,
@@ -64,4 +86,4 @@ export class PacienteRepository{
 
 }
 
-export const pacienteService = new PacienteRepository(prisma)
+export const pacienteRepository = new PacienteRepository(prisma)

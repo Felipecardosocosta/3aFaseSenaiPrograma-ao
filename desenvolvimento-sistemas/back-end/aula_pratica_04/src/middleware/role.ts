@@ -23,8 +23,9 @@ export function roleMiddleware(roles: Role[]) {
             })
 
             const tokenData = getToken(token)
-
-            if (tokenData?.role && !roles.includes(tokenData?.role)) {
+            console.log(tokenData);
+            
+            if (!tokenData?.role || !roles.includes(tokenData?.role)) {
                 return res.status(401).json({
                     error: "Access denied."
                 })
