@@ -12,7 +12,7 @@ const ConsultCounter = () => {
             try {
                 const response = await axios.get('http://localhost:3000/consults')
 
-                console.log(response);
+            
                 
 
                 setConsultsCounter(response.data.length)

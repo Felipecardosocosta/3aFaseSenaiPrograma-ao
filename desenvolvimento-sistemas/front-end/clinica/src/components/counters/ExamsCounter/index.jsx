@@ -10,8 +10,6 @@ const ExamsCounter = () => {
             try {
                 const response = await axios.get('http://localhost:3000/exams')
 
-                console.log(response);
-                
 
                 setExamsCounter(response.data.length)
 

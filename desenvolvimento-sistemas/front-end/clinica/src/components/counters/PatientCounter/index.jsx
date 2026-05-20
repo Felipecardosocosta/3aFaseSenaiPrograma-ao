@@ -12,7 +12,7 @@ const PatientCounter = () => {
             try {
                 const response = await axios.get('http://localhost:3000/patients')
 
-                console.log(response);
+                
                 
 
                 setPatientCounter(response.data.length)
