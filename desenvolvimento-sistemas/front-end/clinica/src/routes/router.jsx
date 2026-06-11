@@ -6,6 +6,7 @@ import DashBoard from "../pages/DashBoard"
 import PrivateRouter from "../components/PrivateRoute"
 import DashboardLayouts from "../layouts/DashboardLayouts"
 import MedicalRecordList from "../components/MedicalRecordList"
+import RegisterFormPatient from "../components/RegisterFormPatient"
 
 
 
@@ -17,13 +18,14 @@ const router = createBrowserRouter([
 
     },
     {
-        element:(
+        element: (
             <PrivateRouter>
                 <DashboardLayouts />
             </PrivateRouter>
-        ),children:[
-            {path:"/dashboard",element:<DashBoard/>},
-            { path: "/prontuarios", element: <MedicalRecordList/> },
+        ), children: [
+            { path: "/dashboard", element: <DashBoard /> },
+            { path: "/pacientes", element: <RegisterFormPatient /> },
+            { path: "/prontuarios", element: <MedicalRecordList /> },
         ]
     },
 ])
