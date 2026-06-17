@@ -25,6 +25,11 @@
       "email": "felipe1ss@gmail.com",
       "password": "a12345678",
       "id": "Y5lNYesbTpA"
+    },
+    {
+      "email": "felipe@gmail.com",
+      "password": "fd1234567",
+      "id": "GZ0cbyOzfDQ"
     }
   ],
   "consults": [
@@ -51,6 +56,7 @@
   ],
   "exams": [
     {
+      "patientId": "1",
       "name": "Exame de Sangue",
       "date": "2023-03-10",
       "time": "09:00",
@@ -59,6 +65,39 @@
       "documentUrl": "http://exemplo.com/documento",
       "result": "Lorem",
       "id": "1"
+    },
+    {
+      "patientId": "1",
+      "name": "efwef",
+      "date": "2026-06-16",
+      "time": "20:45",
+      "laboratory": "wefwefwef",
+      "documentUrl": "wefwefwef",
+      "result": "",
+      "type": "wefwefwef",
+      "id": "8dc_JJulCpk"
+    },
+    {
+      "patientId": "1",
+      "name": "sedfgseg",
+      "date": "2026-06-16",
+      "time": "20:46",
+      "laboratory": "wegwegwefg",
+      "documentUrl": "wefwefwefwef",
+      "result": "wefwefwef",
+      "type": "wefwefwefg",
+      "id": "plMaTL4yBy0"
+    },
+    {
+      "patientId": "2",
+      "name": "wefwefwef",
+      "date": "2026-06-16",
+      "time": "20:47",
+      "laboratory": "wefwefwef",
+      "documentUrl": "wefwefwefwef",
+      "result": "wefwefwef",
+      "type": "wefwefwefwef",
+      "id": "VKZcUH59rAE"
     }
   ],
   "patients": [

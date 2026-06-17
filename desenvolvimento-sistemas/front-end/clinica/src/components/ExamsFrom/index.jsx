@@ -3,7 +3,7 @@ import Modal from "../Modal"
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-function ConsultarionForm() {
+function ExamsForm() {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [patients, setPatients] = useState([])
@@ -13,12 +13,12 @@ function ConsultarionForm() {
 
 
     const [formData, setFormData] = useState({
-        reason: '',
+        name: '',
         date: '',
         time: '',
-        description: '',
-        medication: '',
-        dosagePrecautions: '',
+        laboratory: '',
+        documentUrl: '',
+        result: '',
     })
 
     useEffect(() => {
@@ -73,12 +73,13 @@ function ConsultarionForm() {
 
     const resetForm = () => {
         setFormData({
-            reason: '',
+            name: '',
             date: '',
             time: '',
-            description: '',
-            medication: '',
-            dosagePrecautions: '',
+            type: '',
+            laboratory: '',
+            documentUrl: '',
+            result: '',
 
         })
     }
@@ -98,9 +99,9 @@ function ConsultarionForm() {
                 ...formData
             }
 
-            await axios.post("http://localhost:3000/consults", dataToSave)
+            await axios.post("http://localhost:3000/exams", dataToSave)
 
-            toast.success("Consulta cadastrada com sucesso!", {
+            toast.success("Exame cadastrada com sucesso!", {
                 autoClose: 2000,
                 hideProgressBar: true
             })
@@ -110,8 +111,8 @@ function ConsultarionForm() {
 
 
         } catch (error) {
-            console.error("Erro ao cadastrar consulta!")
-            toast.error("Erro ao cadastrar consulta!", {
+            console.error("Erro ao cadastrar Exame!")
+            toast.error("Erro ao cadastrar Exame!", {
                 autoClose: 2000,
                 hideProgressBar: true
             })
@@ -189,7 +190,7 @@ function ConsultarionForm() {
                     (
                         <>
                             <h2 className='text-lg font-bold mb-4 text-cyan-700'>
-                                Cadastrar consulta para {selectedPatient.fullName}
+                                Cadastrar exame para {selectedPatient.fullName}
                             </h2>
 
                             <div className='mb-4 text-sm text-gray-700'>
@@ -208,14 +209,14 @@ function ConsultarionForm() {
                             >
                                 <div>
 
-                                    <label htmlFor='reason' className='block text-sm font-medium mb-1'>
-                                        Motivo da Consulta:
+                                    <label htmlFor='name' className='block text-sm font-medium mb-1'>
+                                        Nome do Exame:
                                     </label>
 
                                     <input
                                         type="text"
-                                        name="reason"
-                                        id="reason"
+                                        name="name"
+                                        id="name"
                                         value={formData.reason}
                                         onChange={handleInputChange}
                                         className='w-full p-2 border rounded-lg focus:ring-cyan-600 outline-none'
@@ -261,15 +262,15 @@ function ConsultarionForm() {
 
                                 <div>
 
-                                    <label htmlFor='description' className='block text-sm font-medium mb-1'>
-                                        Descrição do problema:
+                                    <label htmlFor='type' className='block text-sm font-medium mb-1'>
+                                        Tipo de exame:
                                     </label>
 
-                                    <textarea
-                                        rows={3}
+                                    <input
+        
                                         type="text"
-                                        name="description"
-                                        id="description"
+                                        name="type"
+                                        id="type"
                                         value={formData.description}
                                         onChange={handleInputChange}
                                         className='w-full p-2 border rounded-lg focus:ring-cyan-600 outline-none resize-none'
@@ -280,15 +281,15 @@ function ConsultarionForm() {
 
                                 <div>
 
-                                    <label htmlFor='medication' className='block text-sm font-medium mb-1'>
-                                        Medicação Receitada:
+                                    <label htmlFor='laboratory' className='block text-sm font-medium mb-1'>
+                                        Laboratorio:
                                     </label>
 
                                     <input
                                         rows={3}
                                         type="text"
-                                        name="medication"
-                                        id="medication"
+                                        name="laboratory"
+                                        id="laboratory"
                                         value={formData.medication}
                                         onChange={handleInputChange}
                                         className='w-full p-2 border rounded-lg focus:ring-cyan-600 outline-none '
@@ -297,18 +298,35 @@ function ConsultarionForm() {
                                 </div>
                                 <div>
 
-                                    <label htmlFor='dosagePrecautions' className='block text-sm font-medium mb-1'>
-                                        Dosagem e Precauções:
+                                    <label htmlFor='documentUrl' className='block text-sm font-medium mb-1'>
+                                        Url do documento:
                                     </label>
 
                                     <input
 
                                         type="text"
-                                        name="dosagePrecautions"
-                                        id="dosagePrecautions"
+                                        name="documentUrl"
+                                        id="documentUrl"
                                         value={formData.dosagePrecautions}
                                         onChange={handleInputChange}
                                         className='w-full p-2 border rounded-lg focus:ring-cyan-600 outline-none '
+                                        required
+                                    />
+                                </div>
+                                <div>
+
+                                    <label htmlFor='result' className='block text-sm font-medium mb-1'>
+                                        Resultado:
+                                    </label>
+
+                                    <textarea
+                                        rows={3}
+                                        type="text"
+                                        name="result"
+                                        id="result"
+                                        value={formData.dosagePrecautions}
+                                        onChange={handleInputChange}
+                                        className='w-full p-2 border rounded-lg focus:ring-cyan-600 outline-none resize-none'
                                         required
                                     />
                                 </div>
@@ -322,7 +340,7 @@ function ConsultarionForm() {
                                         type='button'
                                         className='px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400  transition'
                                     >
-                                         Fechar
+                                        Fechar
 
                                     </button>
                                     <button
@@ -352,4 +370,4 @@ function ConsultarionForm() {
     )
 }
 
-export default ConsultarionForm
+export default ExamsForm

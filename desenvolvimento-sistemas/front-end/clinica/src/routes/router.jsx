@@ -8,6 +8,7 @@ import DashboardLayouts from "../layouts/DashboardLayouts"
 import MedicalRecordList from "../components/MedicalRecordList"
 import RegisterFormPatient from "../components/RegisterFormPatient"
 import ConsultarionForm from "../components/ConsultarionForm"
+import ExamsForm from "../components/ExamsFrom"
 
 
 
@@ -28,6 +29,8 @@ const router = createBrowserRouter([
             { path: "/pacientes", element: <RegisterFormPatient /> },
             { path: "/prontuarios", element: <MedicalRecordList /> },
             { path: "/consultas", element: <ConsultarionForm/> },
+            { path: "/exames", element: <ExamsForm/> },
+
         ]
     },
 ])
