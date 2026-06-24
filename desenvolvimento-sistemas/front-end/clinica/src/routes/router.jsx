@@ -9,6 +9,7 @@ import MedicalRecordList from "../components/MedicalRecordList"
 import RegisterFormPatient from "../components/RegisterFormPatient"
 import ConsultarionForm from "../components/ConsultarionForm"
 import ExamsForm from "../components/ExamsFrom"
+import PatientDetails from "../components/PatientDetail"
 
 
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
             { path: "/prontuarios", element: <MedicalRecordList /> },
             { path: "/consultas", element: <ConsultarionForm/> },
             { path: "/exames", element: <ExamsForm/> },
+            { path: "/paciente/:id", element: <PatientDetails/> }
 
         ]
     },

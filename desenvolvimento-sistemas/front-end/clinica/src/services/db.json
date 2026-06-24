@@ -30,6 +30,11 @@
       "email": "felipe@gmail.com",
       "password": "fd1234567",
       "id": "GZ0cbyOzfDQ"
+    },
+    {
+      "email": "admin@admin.com",
+      "password": "adnim1234567",
+      "id": "v7u3WACD1tk"
     }
   ],
   "consults": [
